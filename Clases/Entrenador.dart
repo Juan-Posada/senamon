@@ -4,12 +4,12 @@ class Entrenador {
     //atributos
     String nombre, email;
     DateTime fechaNacimiento;
-    double expi;
-    int cantBattWin;
+    double exp;
+    int cantBattWin, cantBatt;
 
 
     //constuctor
-    Entrenador(this.nombre,this.email,this.fechaNacimiento,this.expi,this.cantBattWin);
+    Entrenador(this.nombre,this.email,this.fechaNacimiento,this.exp,this.cantBattWin,this.cantBatt);
 
 
     //metodos
@@ -35,6 +35,12 @@ class Entrenador {
         print("lleva ${cantBattWin} batallas ganadas");
     }
 
+    void atraparSenamon(){
 
+    }
+
+    void entrenarSenamon(){
+        
+    }
     	
 }

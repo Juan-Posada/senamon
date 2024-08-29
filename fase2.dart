@@ -8,12 +8,15 @@ void fase2(){
   //Varaibles
   int condicionTipoApp;
 
-  print('');
-  print('◽'*20);
-  print('FASE II(senamon)');
-  print('◽'*20);
-  print('');
+    print('''
 
+      ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
+
+                        FASE II (Senamon)
+                        
+      ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
+
+      ''');
   do {
     print('''
 

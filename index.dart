@@ -22,7 +22,7 @@ void main(){
   do {
     print('''
 
-      ¡BIENVENIDO!g
+      ¡BIENVENIDO! 
       Selecciona tu tipo de juego;
 
       ____________________________
@@ -48,11 +48,13 @@ void main(){
       break;
       case 0:
       print('''
+
       Estás saliendo de tu Juego favorito
       -
       -
       Disfruta tu vida de mortal
       ¡Vuelve pronto!🤍
+
       ''');
       break;
       default:
@@ -63,6 +65,6 @@ void main(){
         ''');
         break;
     }
-  } while (condicionTipoApp != 0);
+  } while (condicionTipoApp != 0 || condicionTipoApp == 1 || condicionTipoApp == 2);
 
 }
