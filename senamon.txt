@@ -1,0 +1,29 @@
+clase entrenador
+	atributos:
+		nombre
+		email
+		fechaNaci
+		xp
+		cantBatallas
+	Se podran enfrentar todas las veces que quieran
+	pokedex
+
+
+clase pokemon
+	atributos:
+		nombre
+		nivel
+		tipo senamon : fuego, agua, volador y electrico
+		peso
+		vida
+		daño
+		fase
+		energia
+		descripción
+	Vector general que contiene todos los senamones
+
+
+
+
+	Cada uno tendrá un ataque y defensa
+
