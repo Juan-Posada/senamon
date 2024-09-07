@@ -5,6 +5,8 @@ import 'fase2.dart';
 
 void main(){
 
+ 
+
   //Varaibles
   int condicionTipoApp;
 
@@ -34,7 +36,6 @@ void main(){
       ----------------------------
 
     ''');
-
     condicionTipoApp = int.parse(stdin.readLineSync()!);
 
     switch (condicionTipoApp) {

@@ -1,11 +1,16 @@
 import 'dart:io';
 
+import 'Clases/Senamon.dart';
+
 void fase1() {
   //Vector de entrenadores
 
   //Vector de Senamones
+   //Universo Senamon
+  List<Senamon> universoSemon = [];       
 
   //Varaibles
+  int cantSemanon = 5;
 
   int condicionTipoApp, opcionEntrenador, opcionSenamon;
   String cantidadInput;
@@ -36,12 +41,12 @@ void fase1() {
 
   ''');
     while (true) {
-      print('Introduce una opción (número entero):');
+      print('Introduce una opción:');
       try {
         condicionTipoApp = int.parse(stdin.readLineSync()!);
         break; // Salir del bucle si la conversión es exitosa
       } catch (e) {
-        print('Por favor, introduce un número entero válido.');
+        print('Por favor, introduce una opcion correcta.');
       }
     }
     switch (condicionTipoApp) {
@@ -64,8 +69,14 @@ void fase1() {
           opcionEntrenador = int.parse(stdin.readLineSync()!);
           switch (opcionEntrenador) {
             case 1:
+            //llamar al metodo entrenador para crear al entrenador
               break;
             case 2:
+            //seleccionar entrenador
+            
+
+              break;
+            case 0:
               print('''
 
       Estás saliendo del menú entrenador
@@ -74,8 +85,6 @@ void fase1() {
       Vamos al siguiente paso
       
       ''');
-              break;
-            case 0:
               break;
 
             default:
@@ -119,9 +128,18 @@ void fase1() {
           }
           switch (opcionSenamon) {
             case 1:
+            //llamar al metodo senamon
               break;
             case 2:
-              print('''
+             //seleccionar el senamon
+             for (var i = 0; i <= cantSemanon ; i++){
+                Senamon newPokemon = Senamon("FFFF", 1, 1, 3.5, 1, 1, "GGGG", 1.4);
+                universoSemon.add(newPokemon);
+                print(newPokemon);
+             }
+              break;
+            case 0:
+             print('''
 
       Estás saliendo del menú senamon
       -
@@ -129,8 +147,6 @@ void fase1() {
       Vamos al siguiente paso
       
       ''');
-              break;
-            case 0:
               break;
 
             default:
