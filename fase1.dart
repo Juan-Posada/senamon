@@ -1,19 +1,26 @@
 import 'dart:io';
 
+import 'Clases/Entrenador.dart';
 import 'Clases/Senamon.dart';
 
 void fase1() {
   //Vector de entrenadores
 
   //Vector de Senamones
-   //Universo Senamon
-  List<Senamon> universoSemon = [];       
+  //Universo Senamon
+  List<Senamon> universoSemon = [];
+  List<Entrenador> entrenadores = [];
 
   //Varaibles
   int cantSemanon = 5;
-
   int condicionTipoApp, opcionEntrenador, opcionSenamon;
   String cantidadInput;
+
+  //ENTRENADORES PREDETERMINADOS
+  Entrenador entrenadorPrede1 = Entrenador(
+      'jeferson', 'jefer@gmail.com', DateTime(13 - 04 - 2000), 0, 0, 0);
+  Entrenador entrenadorPrede2 =
+      Entrenador('martin', 'mar@gmail.com', DateTime(25 - 10 - 2010), 0, 0, 0);
 
   print('''
 
@@ -52,10 +59,9 @@ void fase1() {
     switch (condicionTipoApp) {
       //Menu de Entrenadores----------------
       case 1:
-        do {
-          print('''
+        print('''
 
-      Menú Entrenadores
+      Menú de Entrenadores
       ________________________________
      |                                |
      | 1. Crea tu entrenador          |
@@ -66,39 +72,9 @@ void fase1() {
 
       ''');
 
-          opcionEntrenador = int.parse(stdin.readLineSync()!);
-          switch (opcionEntrenador) {
-            case 1:
-            //llamar al metodo entrenador para crear al entrenador
-              break;
-            case 2:
-            //seleccionar entrenador
-            
+        opcionEntrenador = int.parse(stdin.readLineSync()!);
 
-              break;
-            case 0:
-              print('''
-
-      Estás saliendo del menú entrenador
-      -
-      -
-      Vamos al siguiente paso
-      
-      ''');
-              break;
-
-            default:
-              print('''
-
-          ❌❌❌❌❌❌ OPCION EN DESARROLLO ❌❌❌❌❌❌
-
-          ''');
-              break;
-          }
-        } while (opcionEntrenador != 0 ||
-            opcionEntrenador == 1 ||
-            opcionEntrenador == 2);
-
+        menuEntrenadores(opcionEntrenador);
         break;
 
       //Menu de Senamones-----------------
@@ -128,18 +104,19 @@ void fase1() {
           }
           switch (opcionSenamon) {
             case 1:
-            //llamar al metodo senamon
+              //llamar al metodo senamon
               break;
             case 2:
-             //seleccionar el senamon
-             for (var i = 0; i <= cantSemanon ; i++){
-                Senamon newPokemon = Senamon("FFFF", 1, 1, 3.5, 1, 1, "GGGG", 1.4);
+              //seleccionar el senamon
+              for (var i = 0; i <= cantSemanon; i++) {
+                Senamon newPokemon =
+                    Senamon("FFFF", 1, 1, 3.5, 1, 1, "GGGG", 1.4);
                 universoSemon.add(newPokemon);
                 print(newPokemon);
-             }
+              }
               break;
             case 0:
-             print('''
+              print('''
 
       Estás saliendo del menú senamon
       -
@@ -183,4 +160,38 @@ void fase1() {
     }
   } while (
       condicionTipoApp != 0 || condicionTipoApp == 1 || condicionTipoApp == 2);
+}
+
+void menuEntrenadores(int opcionEntrenador) {
+  do {
+    switch (opcionEntrenador) {
+      case 1:
+        //llamar al metodo entrenador para crear al entrenador
+        
+        break;
+      case 2:
+        //seleccionar entrenador
+
+        break;
+      case 0:
+        print('''
+
+      Estás saliendo del menú entrenador
+      
+      -
+      Vamos al siguiente paso
+      
+      ''');
+        break;
+
+      default:
+        print('''
+
+          ❌❌❌❌❌❌ OPCION EN DESARROLLO ❌❌❌❌❌❌
+
+          ''');
+        break;
+    }
+  } while (
+      opcionEntrenador != 0 || opcionEntrenador == 1 || opcionEntrenador == 2);
 }
