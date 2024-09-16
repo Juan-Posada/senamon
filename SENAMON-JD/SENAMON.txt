@@ -1,0 +1,47 @@
+SENAMON
+1. Senamones
+	SENAMONES
+	1. Ver Senamones
+		VER SENAMONES
+		1. Ver
+		2. Salir
+
+	2. Cambiar un senamon
+		CAMBIAR UN SENAMON
+		1. Cambiar
+		2. Salir
+	3. Salir al menú senamon
+2. Entrenar Senamones
+	ENTRENAR SENAMONES
+	1. entrenar
+		ENTRENAR
+		1. Elegir Senamon
+			ELEGIR SENAMON
+			1.Aumentar ataque
+			2. Aumentar defensa
+			3. Salir
+		2. Salir
+	2. Salir
+
+3. Sobre mí
+	SOBRE MÍ
+	1. Ver info
+	2. Salir
+4. Batalla
+	BATALLA
+	1. Iniciar batalla
+		INICIAR BATALLA
+		1. Atacar
+		2. Cambiar Senamon
+		----- Se sale cuando la batalla finalice------
+	2. Salir
+5. ASCENDER A LA SEGUNDA FASE
+	------Sale del menú SENAMON para entrar al torneo-----
+6. Salir
+	------Sale del menú SENAMON sin entrar al torneo, termina el juego------
+
+
+
+	
+
+
