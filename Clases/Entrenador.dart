@@ -1,47 +1,59 @@
-import 'dart:io';
-
 import 'Senamon.dart';
 
 class Entrenador {
-  //atributos
+  // Atributos
   List<Senamon> listaSenamon = [];
   String _nombre, _email;
   DateTime _fechaNacimiento;
   double _exp;
   int _cantBattWin, _cantBatt;
 
-  //constuctor
+  // Constructor
   Entrenador(this._nombre, this._email, this._fechaNacimiento, this._exp,
       this._cantBattWin, this._cantBatt);
 
-  //metodos
+  // Métodos
   void mostrarInfo() {
-    print("ingrese el _nombre del entrenador:");
-    _nombre = stdin.readLineSync()!;
-    print("entrenador: ${this._nombre}");
-    print("ingrese el _email del entrenador:");
-    _email = stdin.readLineSync()!;
-    print("ingrese la fecha de nacimiento del entrenador:");
-    _fechaNacimiento = DateTime.parse(stdin.readLineSync()!);
+    print("Nombre del entrenador: $_nombre");
+    print("Email del entrenador: $_email");
+    print("Fecha de nacimiento del entrenador: $_fechaNacimiento");
+    print("Experiencia: $_exp");
+    print("Batallas ganadas: $_cantBattWin");
+    print("Cantidad total de batallas: $_cantBatt");
   }
 
-  void sumar_exp() {}
-  void restar_exp() {}
+  void sumarExp(double cantidad) {
+    this._exp += cantidad;
+    print("Nueva experiencia: ${this._exp}");
+  }
+
+  void restarExp(double cantidad) {
+    this._exp = (this._exp - cantidad).clamp(0, double.infinity);
+    print("Nueva experiencia: ${this._exp}");
+  }
 
   void cantidadBatallas() {
     _cantBattWin++;
-    print("Lleva ${_cantBattWin} batallas ganadas");
+    print("Lleva $_cantBattWin batallas ganadas");
   }
 
-  void atraparSenamon() {
-
+  void atraparSenamon(Senamon senamon) {
+    listaSenamon.add(senamon);
+    print("Senamon atrapado: ${senamon.getNombre()}");
   }
 
-  void entrenarSenamon() {}
- 
+  void entrenarSenamon(Senamon senamon, double incremento, int puntosAtaque, int puntosSalud) {
+    if (listaSenamon.contains(senamon)) { 
+      senamon.subirNivel(incremento.toInt());
+      senamon.aumentarAtaque(puntosAtaque);
+      senamon.aumentarSalud(puntosSalud);
+      print("Entrenamiento exitoso de ${senamon.getNombre()} con nivel incrementado en ${incremento} niveles, ataque incrementado en ${puntosAtaque} puntos y salud incrementada en ${puntosSalud} puntos.");
+    } else {
+      print("${senamon.getNombre()} no está en tu lista de Senamones.");
+    }
+  }
 
-
-  //Get
+  // Getters
   String getNombre() {
     return this._nombre;
   }
@@ -66,17 +78,16 @@ class Entrenador {
     return this._cantBatt;
   }
 
-//SET
+  // Setters
   void setExp(double newExp) {
     this._exp = newExp;
   }
 
-  void setCantBattWin(int newcantBattWin) {
-    this._cantBattWin = newcantBattWin;
+  void setCantBattWin(int newCantBattWin) {
+    this._cantBattWin = newCantBattWin;
   }
 
-  void setCantBatt(int newcantBatt) {
-    this._cantBattWin = newcantBatt;
+  void setCantBatt(int newCantBatt) {
+    this._cantBatt = newCantBatt;
   }
-
 }

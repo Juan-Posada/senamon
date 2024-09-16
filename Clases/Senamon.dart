@@ -1,6 +1,6 @@
 class Senamon {
   String _nombre;
-  int _fase ;
+  int _fase;
   int _nivel;
   double _peso;
   double _energia;
@@ -10,38 +10,52 @@ class Senamon {
 
   Senamon(this._nombre, this._fase, this._nivel, this._peso, this._puntosSalud, this._puntosAtaque, this._descripcion, this._energia);
 
+  // Métodos para aumentar puntos de ataque y salud
   void aumentarAtaque(int puntos) {
-    
+    _puntosAtaque += puntos;
+    print("$_nombre ha aumentado su ataque a $_puntosAtaque");
   }
 
   void aumentarSalud(int puntos) {
-
+    _puntosSalud += puntos;
+    print("$_nombre ha aumentado su salud a $_puntosSalud");
   }
 
-  //get
+  void subirNivel(int incremento) {
+    _nivel += incremento;
+    print("$_nombre ha subido su nivel a $_nivel");
+  }
 
-  String getNombre(){
-    return this._nombre;
+  // Getters
+  String getNombre() {
+    return _nombre;
   }
-   int getfase(){
-    return this._fase;
+
+  int getFase() {
+    return _fase;
   }
-   int getNivel(){
-    return this._nivel;
+
+  int getNivel() {
+    return _nivel;
   }
-   double getPeso(){
-    return this._peso;
+
+  double getPeso() {
+    return _peso;
   }
-   double getEnergia(){
-    return this._energia;
+
+  double getEnergia() {
+    return _energia;
   }
-   int getPuntosSalud(){
-    return this._puntosSalud;
+
+  int getPuntosSalud() {
+    return _puntosSalud;
   }
-   int getPuntosAtaque(){
-    return this._puntosAtaque;
+
+  int getPuntosAtaque() {
+    return _puntosAtaque;
   }
-   String getDescripcion(){
-    return this._descripcion;
+
+  String getDescripcion() {
+    return _descripcion;
   }
 }
