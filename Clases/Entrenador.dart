@@ -3,6 +3,7 @@ import 'Senamon.dart';
 class Entrenador {
   // Atributos
   List<Senamon> listaSenamon = [];
+  List<Senamon> universoSemon = [];
   String _nombre, _email;
   DateTime _fechaNacimiento;
   double _exp;
@@ -10,10 +11,32 @@ class Entrenador {
 
   // Constructor
   Entrenador(this._nombre, this._email, this._fechaNacimiento, this._exp,
-      this._cantBattWin, this._cantBatt);
+      this._cantBattWin, this._cantBatt, this.listaSenamon, this.universoSemon);
 
   // Métodos
-  void mostrarInfo() {
+  void agregarSenamon(Senamon senamon) {
+    if (listaSenamon.length < 5) {
+      listaSenamon.add(senamon);
+      print("${senamon.getNombre()} agregado al equipo.");
+    } else {
+      print("No puedes tener más de 5 Senamones en el equipo.");
+    }
+  }
+
+  void mostrarSenamones() {
+    print("Equipo de $_nombre:");
+    for (var senamon in listaSenamon) {
+      print(senamon);
+    }
+  }
+  void mostrarUniverso() {
+    print("Equipo de $_nombre:");
+    for (var senamon in listaSenamon) {
+      print(senamon);
+    }
+  }
+
+  void mostrarInfoEntrenador() {
     print("Nombre del entrenador: $_nombre");
     print("Email del entrenador: $_email");
     print("Fecha de nacimiento del entrenador: $_fechaNacimiento");
@@ -37,17 +60,14 @@ class Entrenador {
     print("Lleva $_cantBattWin batallas ganadas");
   }
 
-  void atraparSenamon(Senamon senamon) {
-    listaSenamon.add(senamon);
-    print("Senamon atrapado: ${senamon.getNombre()}");
-  }
-
-  void entrenarSenamon(Senamon senamon, double incremento, int puntosAtaque, int puntosSalud) {
-    if (listaSenamon.contains(senamon)) { 
+  void entrenarSenamon(
+      Senamon senamon, double incremento, int puntosAtaque, int puntosSalud) {
+    if (listaSenamon.contains(senamon)) {
       senamon.subirNivel(incremento.toInt());
       senamon.aumentarAtaque(puntosAtaque);
       senamon.aumentarSalud(puntosSalud);
-      print("Entrenamiento exitoso de ${senamon.getNombre()} con nivel incrementado en ${incremento} niveles, ataque incrementado en ${puntosAtaque} puntos y salud incrementada en ${puntosSalud} puntos.");
+      print(
+          "Entrenamiento exitoso de ${senamon.getNombre()} con nivel incrementado en ${incremento} niveles, ataque incrementado en ${puntosAtaque} puntos y salud incrementada en ${puntosSalud} puntos.");
     } else {
       print("${senamon.getNombre()} no está en tu lista de Senamones.");
     }

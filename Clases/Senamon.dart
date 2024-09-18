@@ -1,4 +1,6 @@
-class Senamon {
+import 'TipoSenamon.dart';
+
+class Senamon extends Tiposenamon{
   String _nombre;
   int _fase;
   int _nivel;
@@ -8,7 +10,7 @@ class Senamon {
   int _puntosAtaque;
   String _descripcion;
 
-  Senamon(this._nombre, this._fase, this._nivel, this._peso, this._puntosSalud, this._puntosAtaque, this._descripcion, this._energia);
+  Senamon(this._nombre, this._fase, this._nivel, this._peso, this._puntosSalud, this._puntosAtaque, this._descripcion, this._energia, String _nombreTipo, String _descripcionTipo) : super (_nombreTipo,_descripcionTipo);
 
   // Métodos para aumentar puntos de ataque y salud
   void aumentarAtaque(int puntos) {

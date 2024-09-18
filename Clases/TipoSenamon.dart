@@ -1,9 +1,9 @@
 class Tiposenamon {
   //Atributos
-  String _descripcion, _nombre;
+  String _descripcionTipo, _nombreTipo;
   
   //Constructor
-  Tiposenamon(this._descripcion, this._nombre);
+  Tiposenamon(this._descripcionTipo, this._nombreTipo);
 
   //Setter
   void setDescripcionTipoSenamon() {
@@ -13,5 +13,12 @@ class Tiposenamon {
   //Getter
    void getDescripcionTipoSenamon() {
     
+  }
+
+
+  void mostrarTipo (){
+    print("""
+El tipo del senamon es $_nombreTipo
+y su descripción es $_descripcionTipo""");
   }
 }
