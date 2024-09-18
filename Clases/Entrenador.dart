@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'Senamon.dart';
 
 class Entrenador {
@@ -61,17 +62,32 @@ class Entrenador {
     print("Lleva $_cantBattWin batallas ganadas");
   }
 
-  void entrenarSenamon(
-      Senamon senamon, double incremento, int puntosAtaque, int puntosSalud) {
-    if (listaSenamon.contains(senamon)) {
-      senamon.subirNivel(incremento.toInt());
-      senamon.aumentarAtaque(puntosAtaque);
-      senamon.aumentarSalud(puntosSalud);
-      print(
-          "Entrenamiento exitoso de ${senamon.getNombre()} con nivel incrementado en ${incremento} niveles, ataque incrementado en ${puntosAtaque} puntos y salud incrementada en ${puntosSalud} puntos.");
-    } else {
-      print("${senamon.getNombre()} no está en tu lista de Senamones.");
-    }
+  void entrenarSenamon(int opcion2, List<Entrenador> listaEntrenadores) {
+    Entrenador entrenadorSeleccionado = listaEntrenadores[opcion2 - 1];
+    int opcion, opcionSenamon;
+    do {
+      print('1. Para entrenar Senamones');
+      print('2. Para salir');
+      opcion = int.parse(stdin.readLineSync()!);
+      switch (opcion) {
+        case 1:
+          if (_exp >= 200) {
+            print('Selecciona el Senamon a entrenar');
+            for (var i = 0; i < listaSenamon.length; i++) {
+              print('${i + 1}. ${listaSenamon[i]}');
+            }
+            opcionSenamon = int.parse(stdin.readLineSync()!);
+            switch (opcionSenamon)
+          }
+
+          print("Tus senamones son los siguientes");
+          mostrarSenamones();
+          print("Indique que senamon desea entrenar");
+          break;
+        case 2:
+          break;
+      }
+    } while (opcion != 2);
   }
 
   // Getters

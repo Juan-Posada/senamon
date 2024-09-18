@@ -577,9 +577,8 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
 
 void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
     List<Senamon> senamones, List<Entrenador> listaEntrenadores) {
+  //---------------- VBLES DE LA FUNCION ----------------//
 
-        //---------------- VBLES DE LA FUNCION ----------------//
-      
   List<Entrenador> listadoEntrenadores = List.from(listaEntrenadores);
   String nombre, descripcion, nombreTipo, descripcionTipo;
   int fase, nivel, puntosSalud, puntosAtaque;
@@ -625,8 +624,22 @@ void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
         cambiarSenamones(listadoEntrenadores, numEntrenador);
 
       case 3:
-      //---------------- ENTRENAR SENAMON ----------------//
-      
+        //---------------- ENTRENAR SENAMON ----------------//
+        int opcionDeEntrenador;
+        print("Seleccione el Entrenador que cambíará los senamones primero");
+        print('1. ${listaEntrenadores[0].getNombre()}');
+        print('2. ${listaEntrenadores[1].getNombre()}');
+
+        opcionDeEntrenador=int.parse(stdin.readLineSync()!);
+
+        if(opcionDeEntrenador == 1){
+          listadoEntrenadores[0].entrenarSenamon(opcionDeEntrenador, listadoEntrenadores);
+        } else if (opcionDeEntrenador == 2) {
+          listadoEntrenadores[1].entrenarSenamon(opcionDeEntrenador, listadoEntrenadores);
+        } else {
+          print('Opción incorrecta');
+        }
+
         break;
       case 4:
       //---------------- ALIMENTAR SENAMON ----------------//
@@ -665,7 +678,7 @@ int obtenerPosicion(List<dynamic> lista, String texto) {
   return numero;
 }
 
-void cambiarSenamones( List<Entrenador> listadoEntrenadores, int numEntrenador) {
+void cambiarSenamones(List<Entrenador> listadoEntrenadores, int numEntrenador) {
   int opcionSeleccion;
   do {
     print("*" * 30);
