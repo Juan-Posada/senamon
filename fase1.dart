@@ -576,6 +576,9 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
 
 void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
     List<Senamon> senamones, List<Entrenador> listaEntrenadores) {
+
+
+
   List<Entrenador> listadoEntrenadores = List.from(listaEntrenadores);
   String nombre, descripcion, nombreTipo, descripcionTipo;
   int cantSemanon = 5, fase, nivel, puntosSalud, puntosAtaque, opcion;
@@ -584,37 +587,46 @@ void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
     switch (opcionSenamon) {
       case 1:
         //---------------- CREACIÓN DE SENAMON ----------------//
-        print("""Ingrese los datos del entrenador en el siguiente orden.
-          1. Nombre del Senamon.
-          2. Peso del Senamon.
-          3. Energia del Senamon.
-          4. Puntos de Salud.
-          5. Puntos de Ataque.
-          6. Nivel del senamon.
-          7. Fase en la que se encuentra el Senamon.
-          8. Tipo de senamon.
-          9. Descripción del tipo.
-          10. Descripción General.
-          """);
+        print("Ingrese los datos del entrenador en el siguiente orden.");
+        print("1. Nombre del Senamon.");
         nombre = stdin.readLineSync()!;
+        print("2. Peso del Senamon.");
         peso = double.parse(stdin.readLineSync()!);
+        print("3. Energia del Senamon.");
         energia = double.parse(stdin.readLineSync()!);
+        print("4. Puntos de Salud.");
         puntosSalud = int.parse(stdin.readLineSync()!);
+        print("5. Puntos de Ataque.");
         puntosAtaque = int.parse(stdin.readLineSync()!);
+        print("6. Nivel del senamon.");
         nivel = int.parse(stdin.readLineSync()!);
+        print("7. Fase en la que se encuentra el Senamon.");
         fase = int.parse(stdin.readLineSync()!);
+        print("8. Tipo de senamon.");
         nombreTipo = stdin.readLineSync()!;
+        print("9. Descripción del tipo.");
         descripcionTipo = stdin.readLineSync()!;
+        print("10. Descripción General.");
         descripcion = stdin.readLineSync()!;
 
-        // Crear un nuevo entrenador usando los setters
+        // Crear un nuevo senamon usando los setters
         Senamon mySenamon = Senamon(nombre, fase, nivel, peso, puntosSalud,
             puntosAtaque, descripcion, energia, nombreTipo, descripcionTipo);
         universoSenamon.add(mySenamon);
         print(
-            "Entrenador ${mySenamon.getNombre()} creado y agregado a la lista.");
+            "Senamon ${mySenamon.getNombre()} creado y agregado a la lista.");
         break;
       case 2:
+      
+      print("cambio de Senamones");
+      for (int i = 0; i <listadoEntrenadores.length; i++) {
+        print("sus Senamones:");
+        print(listaEntrenadores);
+
+        print("cual senamon desea cambiar?");
+            
+          }
+
       case 0:
         print('''
 
