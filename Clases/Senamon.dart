@@ -28,6 +28,8 @@ class Senamon extends Tiposenamon{
     print("$_nombre ha subido su nivel a $_nivel");
   }
 
+  
+
   // Getters
   String getNombre() {
     return _nombre;
@@ -59,5 +61,38 @@ class Senamon extends Tiposenamon{
 
   String getDescripcion() {
     return _descripcion;
+  }
+
+  // Setters
+  void setNombre(String nombre){
+    this._nombre = nombre;
+  }
+
+  void setFase(int fase) {
+    this._fase = fase;
+  }
+
+  void setNivel(int nivel) {
+    this._nivel = nivel;
+  }
+
+  void setPeso(double peso) {
+    this._peso = peso;
+  }
+
+  void setEnergia(double energia) {
+    this._energia = energia;
+  }
+
+  void setPuntosDeSalud(int puntosDeSalud) {
+    this._puntosSalud = puntosDeSalud;
+  }
+
+  void setPuntosDeAtaque(int puntosDeAtaque) {
+    this._puntosAtaque = puntosDeAtaque;
+  }
+
+  void setDescripcion(String descripcion) {
+    this._descripcion = descripcion;
   }
 }

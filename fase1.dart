@@ -356,6 +356,7 @@ void fase1() {
      | 2. Cambiar senamones           |
      | 3. Entrenar senamones          |
      | 4. Alimentar senamones         |
+     | 5. Mostrar universo Senamon    |
      | 0. SALIR                       |
      |                                |
       --------------------------------
@@ -577,11 +578,11 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
 void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
     List<Senamon> senamones, List<Entrenador> listaEntrenadores) {
 
-
-
+        //---------------- VBLES DE LA FUNCION ----------------//
+      
   List<Entrenador> listadoEntrenadores = List.from(listaEntrenadores);
   String nombre, descripcion, nombreTipo, descripcionTipo;
-  int cantSemanon = 5, fase, nivel, puntosSalud, puntosAtaque, opcion;
+  int fase, nivel, puntosSalud, puntosAtaque;
   double peso, energia;
   do {
     switch (opcionSenamon) {
@@ -613,20 +614,25 @@ void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
         Senamon mySenamon = Senamon(nombre, fase, nivel, peso, puntosSalud,
             puntosAtaque, descripcion, energia, nombreTipo, descripcionTipo);
         universoSenamon.add(mySenamon);
-        print(
-            "Senamon ${mySenamon.getNombre()} creado y agregado a la lista.");
+        print("Senamon ${mySenamon.getNombre()} creado y agregado a la lista.");
         break;
       case 2:
+        int numEntrenador;
+        print("Seleccione el Entrenador que cambíará los senamones primero");
+        numEntrenador = int.parse(stdin.readLineSync()!);
+        numEntrenador -= 1;
+
+        cambiarSenamones(listadoEntrenadores, numEntrenador);
+
+      case 3:
+      //---------------- ENTRENAR SENAMON ----------------//
       
-      print("cambio de Senamones");
-      for (int i = 0; i <listadoEntrenadores.length; i++) {
-        print("sus Senamones:");
-        print(listaEntrenadores);
+        break;
+      case 4:
+      //---------------- ALIMENTAR SENAMON ----------------//
 
-        print("cual senamon desea cambiar?");
-            
-          }
-
+      case 5:
+      //---------------- MOSTRAR UNIVERSO SENAMON ----------------//
       case 0:
         print('''
 
@@ -643,8 +649,79 @@ void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
 
           ❌❌❌❌❌❌ OPCION EN DESARROLLO ❌❌❌❌❌❌
 
+
           ''');
         break;
     }
   } while (opcionSenamon != 0 || opcionSenamon == 1 || opcionSenamon == 2);
+}
+
+int obtenerPosicion(List<dynamic> lista, String texto) {
+  int numero = int.parse(stdin.readLineSync()!);
+  while (numero > lista.length || numero <= 0) {
+    print(texto);
+    numero = int.parse(stdin.readLineSync()!);
+  }
+  return numero;
+}
+
+void cambiarSenamones( List<Entrenador> listadoEntrenadores, int numEntrenador) {
+  int opcionSeleccion;
+  do {
+    print("*" * 30);
+    print("1. Seleccionar Senamones");
+    print("2. Salir");
+    opcionSeleccion = int.parse(stdin.readLineSync()!);
+    switch (opcionSeleccion) {
+      case 1:
+        print("TUS SENAMONES SELECCIONADOS");
+        for (var i = 0;
+            i < listadoEntrenadores[numEntrenador].listaSenamon.length;
+            i++) {
+          print(
+              "${i + 1}. ${listadoEntrenadores[numEntrenador].listaSenamon[i].getNombre()}");
+        }
+        print("Ingresa el numero del senamon que deseas cambiar");
+        int numSenamon = obtenerPosicion(
+                listadoEntrenadores[numEntrenador].listaSenamon,
+                "Ingrese un número de senamon de su lista") -
+            1;
+        print("LISTA DE LOS SENAMONES QUE NO HAS SELECCIONADO");
+        for (var i = 0;
+            i < listadoEntrenadores[numEntrenador].universoSemon.length;
+            i++) {
+          print(
+              "${i + 1}. ${listadoEntrenadores[numEntrenador].universoSemon[i].getNombre()}");
+        }
+        print(
+            "Ingresa el número del senamon que deseas reemplazar por ${listadoEntrenadores[numEntrenador].listaSenamon[numSenamon].getNombre()}");
+        int numSenamonNuevo = obtenerPosicion(
+                listadoEntrenadores[numEntrenador].universoSemon,
+                "Ingrese un número de senamon válido") -
+            1;
+        listadoEntrenadores[numEntrenador]
+            .universoSemon
+            .add(listadoEntrenadores[numEntrenador].listaSenamon[numSenamon]);
+        listadoEntrenadores[numEntrenador].listaSenamon.removeAt(numSenamon);
+        listadoEntrenadores[numEntrenador].listaSenamon.add(
+            listadoEntrenadores[numEntrenador].universoSemon[numSenamonNuevo]);
+        listadoEntrenadores[numEntrenador]
+            .universoSemon
+            .removeAt(numSenamonNuevo);
+        print("ESTOS SON LOS SENAMONES CON LOS QUE QUEDASTE");
+        for (var i = 0;
+            i < listadoEntrenadores[numEntrenador].listaSenamon.length;
+            i++) {
+          print(
+              "${i + 1}. ${listadoEntrenadores[numEntrenador].listaSenamon[i].getNombre()}");
+        }
+        break;
+      case 2:
+        print("Has salido del menú de seleccionar senamones");
+        break;
+      default:
+        print("Ingrese una opción correcta");
+        break;
+    }
+  } while (opcionSeleccion != 2);
 }

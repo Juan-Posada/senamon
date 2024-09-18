@@ -29,6 +29,7 @@ class Entrenador {
       print(senamon);
     }
   }
+
   void mostrarUniverso() {
     print("Equipo de $_nombre:");
     for (var senamon in listaSenamon) {
