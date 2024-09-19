@@ -63,7 +63,7 @@ class Entrenador {
   }
 
   void entrenarSenamon(int opcion2, List<Entrenador> listaEntrenadores) {
-    Entrenador entrenadorSeleccionado = listaEntrenadores[opcion2 - 1];
+    Entrenador entrenadorSeleccionado = listaEntrenadores[opcion2 - 1];.2
     int opcion, opcionSenamon;
     do {
       print('1. Para entrenar Senamones');
@@ -77,12 +77,8 @@ class Entrenador {
               print('${i + 1}. ${listaSenamon[i]}');
             }
             opcionSenamon = int.parse(stdin.readLineSync()!);
-            switch (opcionSenamon)
+            
           }
-
-          print("Tus senamones son los siguientes");
-          mostrarSenamones();
-          print("Indique que senamon desea entrenar");
           break;
         case 2:
           break;

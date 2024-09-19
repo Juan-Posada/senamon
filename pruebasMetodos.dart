@@ -1,6 +1,7 @@
 import 'dart:io';
 
 void main() {
+  
   List<String> holis = ['Juandi', 'Dani', 'Posada'];
   int caso;
 
@@ -27,3 +28,13 @@ do {
   
 
 }
+
+ void lanzarMoneda() {
+  List<String> moneda = ['Cara', 'Sello'];
+   for (var i = 0; i < 1; i++) {
+       moneda.shuffle();
+       print(moneda[i]);
+    }
+
+
+  } 

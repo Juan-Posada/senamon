@@ -400,11 +400,11 @@ void fase1() {
 
 void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
     List<Senamon> universoSenamon) {
-  List<Senamon> universosSenamon = universoSenamon;
-  List<Senamon> listadoSenamon = [];
-  String? nombre, email, fecha;
-  DateTime fechaNacimiento;
-  int opcion, cantSemanon = 5, opcion1;
+    List<Senamon> universosSenamon = universoSenamon;
+    List<Senamon> listadoSenamon = [];
+    String? nombre, email, fecha;
+    DateTime fechaNacimiento;
+    int opcion, cantSemanon = 5, opcion1;
   do {
     switch (opcionEntrenador) {
       case 1:
