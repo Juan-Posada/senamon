@@ -1,5 +1,6 @@
 import 'dart:io';
 
+/*
 void main() {
   
   List<String> holis = ['Juandi', 'Dani', 'Posada'];
@@ -29,12 +30,28 @@ do {
 
 }
 
+*/
+
+void main() {
+  iniciarBatalla();
+}
+
  void lanzarMoneda() {
-  List<String> moneda = ['Cara', 'Sello'];
-   for (var i = 0; i < 1; i++) {
+ List<String> moneda = ['Cara', 'Sello'];
+    for (var i = 0; i < 1; i++) {
        moneda.shuffle();
        print(moneda[i]);
     }
 
+ }
 
-  } 
+ void iniciarBatalla() {
+    lanzarMoneda();
+    if (lanzarMoneda() == 'Cara') {
+         print('hola'); 
+    }
+    else {
+      print('chao');
+    }
+  }
+ 

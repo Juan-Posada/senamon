@@ -4,7 +4,6 @@ import 'Senamon.dart';
 class Entrenador {
   // Atributos
   List<Senamon> listaSenamon = [];
-  List<Senamon> universoSemon = [];
   String _nombre, _email;
   DateTime _fechaNacimiento;
   double _exp;
@@ -12,12 +11,11 @@ class Entrenador {
 
   // Constructor
   Entrenador(this._nombre, this._email, this._fechaNacimiento, this._exp,
-      this._cantBattWin, this._cantBatt, this.listaSenamon, this.universoSemon);
+      this._cantBattWin, this._cantBatt, this.listaSenamon);
 
   // Métodos
   void agregarSenamon(Senamon senamon) {
-    if (listaSenamon.length < 5) {
-      listaSenamon.add(senamon);
+    if (listaSenamon.length < 5) {      listaSenamon.add(senamon);
       print("${senamon.getNombre()} agregado al equipo.");
     } else {
       print("No puedes tener más de 5 Senamones en el equipo.");
@@ -63,7 +61,7 @@ class Entrenador {
   }
 
   void entrenarSenamon(int opcion2, List<Entrenador> listaEntrenadores) {
-    Entrenador entrenadorSeleccionado = listaEntrenadores[opcion2 - 1];.2
+    Entrenador entrenadorSeleccionado = listaEntrenadores[opcion2 - 1];
     int opcion, opcionSenamon;
     do {
       print('1. Para entrenar Senamones');

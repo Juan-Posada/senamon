@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'Clases/Entrenador.dart';
 import 'Clases/Senamon.dart';
-
+List<Senamon> universoSenamon = [];
 void fase1() {
   //Vector de entrenadores
 
   //Vector de Senamones
   //Universo Senamon
-  List<Senamon> universoSenamon = [
+  universoSenamon = [
     Senamon(
         'Flama',
         1,
@@ -448,7 +448,7 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
           }
           // Crear un nuevo entrenador usando los setters
           Entrenador entrenador1 = Entrenador(nombre!, email!, fechaNacimiento,
-              0, 0, 0, listadoSenamon, universosSenamon);
+              0, 0, 0, listadoSenamon);
           listaEntrenadores.add(entrenador1);
 
           print(
@@ -491,8 +491,7 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
             0,
             0,
             0,
-            listadoSenamon,
-            universosSenamon);
+            listadoSenamon);
         while (listadoSenamon.length < 5) {
           print("Senamones disponibles Para el entrenador 2:");
           for (int i = 0; i < universoSenamon.length; i++) {
@@ -525,8 +524,7 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
             0,
             0,
             0,
-            listadoSenamon,
-            universosSenamon);
+            listadoSenamon);
         print("""Seleccione un entrenador
         Al momento de seleccionarlo, el restante de definirá autimaticamente.
         1. ${entrenadorPrede1.getNombre()}.
@@ -615,6 +613,8 @@ void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
         universoSenamon.add(mySenamon);
         print("Senamon ${mySenamon.getNombre()} creado y agregado a la lista.");
         break;
+
+        
       case 2:
         int numEntrenador;
         print("Seleccione el Entrenador que cambíará los senamones primero");
@@ -700,11 +700,9 @@ void cambiarSenamones(List<Entrenador> listadoEntrenadores, int numEntrenador) {
                 "Ingrese un número de senamon de su lista") -
             1;
         print("LISTA DE LOS SENAMONES QUE NO HAS SELECCIONADO");
-        for (var i = 0;
-            i < listadoEntrenadores[numEntrenador].universoSemon.length;
-            i++) {
+        for (var i = 0;i < universoSenamon.length;i++) {
           print(
-              "${i + 1}. ${listadoEntrenadores[numEntrenador].universoSemon[i].getNombre()}");
+              "${i + 1}. ${universoSenamon[i].getNombre()}");
         }
         print(
             "Ingresa el número del senamon que deseas reemplazar por ${listadoEntrenadores[numEntrenador].listaSenamon[numSenamon].getNombre()}");
@@ -712,19 +710,12 @@ void cambiarSenamones(List<Entrenador> listadoEntrenadores, int numEntrenador) {
                 listadoEntrenadores[numEntrenador].universoSemon,
                 "Ingrese un número de senamon válido") -
             1;
-        listadoEntrenadores[numEntrenador]
-            .universoSemon
-            .add(listadoEntrenadores[numEntrenador].listaSenamon[numSenamon]);
+        listadoEntrenadores[numEntrenador].universoSemon.add(listadoEntrenadores[numEntrenador].listaSenamon[numSenamon]);
         listadoEntrenadores[numEntrenador].listaSenamon.removeAt(numSenamon);
-        listadoEntrenadores[numEntrenador].listaSenamon.add(
-            listadoEntrenadores[numEntrenador].universoSemon[numSenamonNuevo]);
-        listadoEntrenadores[numEntrenador]
-            .universoSemon
-            .removeAt(numSenamonNuevo);
+        listadoEntrenadores[numEntrenador].listaSenamon.add(listadoEntrenadores[numEntrenador].universoSemon[numSenamonNuevo]);
+        listadoEntrenadores[numEntrenador].universoSemon.removeAt(numSenamonNuevo);
         print("ESTOS SON LOS SENAMONES CON LOS QUE QUEDASTE");
-        for (var i = 0;
-            i < listadoEntrenadores[numEntrenador].listaSenamon.length;
-            i++) {
+        for (var i = 0;i < listadoEntrenadores[numEntrenador].listaSenamon.length;i++) {
           print(
               "${i + 1}. ${listadoEntrenadores[numEntrenador].listaSenamon[i].getNombre()}");
         }
