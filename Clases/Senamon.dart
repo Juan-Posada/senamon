@@ -1,6 +1,6 @@
 import 'TipoSenamon.dart';
 
-class Senamon extends Tiposenamon{
+class Senamon extends Tiposenamon {
   String _nombre;
   int _fase;
   int _nivel;
@@ -10,7 +10,18 @@ class Senamon extends Tiposenamon{
   int _puntosAtaque;
   String _descripcion;
 
-  Senamon(this._nombre, this._fase, this._nivel, this._peso, this._puntosSalud, this._puntosAtaque, this._descripcion, this._energia, String _nombreTipo, String _descripcionTipo) : super (_nombreTipo,_descripcionTipo);
+  Senamon(
+      this._nombre,
+      this._fase,
+      this._nivel,
+      this._peso,
+      this._puntosSalud,
+      this._puntosAtaque,
+      this._descripcion,
+      this._energia,
+      String _nombreTipo,
+      String _descripcionTipo)
+      : super(_nombreTipo, _descripcionTipo);
 
   // Métodos para aumentar puntos de ataque y salud
   void aumentarAtaque(int puntos) {
@@ -28,7 +39,27 @@ class Senamon extends Tiposenamon{
     print("$_nombre ha subido su nivel a $_nivel");
   }
 
-  
+// Método para alimentar al Senamon
+ void alimentar() {
+    // Definimos el máximo directamente aquí
+    const int saludMaxima = 100; // Cambia este valor según tus necesidades
+
+    if (_puntosSalud < saludMaxima) {
+      _puntosSalud += 20; // Aumenta la salud en 20
+      if (_puntosSalud > saludMaxima) {
+        _puntosSalud = saludMaxima; // No exceder el máximo
+      }
+      print("$_nombre ha sido alimentado. Salud actual: $_puntosSalud / $saludMaxima");
+    } else {
+      print("$_nombre ya tiene salud máxima.");
+    }
+  }
+
+
+  // Verifica si el Senamon sigue vivo
+  bool estaVivo() {
+    return _puntosSalud > 0;
+  }
 
   // Getters
   String getNombre() {
@@ -64,7 +95,7 @@ class Senamon extends Tiposenamon{
   }
 
   // Setters
-  void setNombre(String nombre){
+  void setNombre(String nombre) {
     this._nombre = nombre;
   }
 

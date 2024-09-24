@@ -15,7 +15,8 @@ class Entrenador {
 
   // Métodos
   void agregarSenamon(Senamon senamon) {
-    if (listaSenamon.length < 5) {      listaSenamon.add(senamon);
+    if (listaSenamon.length < 5) {
+      listaSenamon.add(senamon);
       print("${senamon.getNombre()} agregado al equipo.");
     } else {
       print("No puedes tener más de 5 Senamones en el equipo.");
@@ -29,12 +30,6 @@ class Entrenador {
     }
   }
 
-  void mostrarUniverso() {
-    print("Equipo de $_nombre:");
-    for (var senamon in listaSenamon) {
-      print(senamon);
-    }
-  }
 
   void mostrarInfoEntrenador() {
     print("Nombre del entrenador: $_nombre");
@@ -75,13 +70,38 @@ class Entrenador {
               print('${i + 1}. ${listaSenamon[i]}');
             }
             opcionSenamon = int.parse(stdin.readLineSync()!);
-            
           }
           break;
         case 2:
           break;
       }
     } while (opcion != 2);
+  }
+
+ void alimentarSenamon(int seleccionSenamon) {
+    if (seleccionSenamon < 1 || seleccionSenamon > listaSenamon.length) {
+      print("Selección inválida");
+      return;
+    }
+    // Elegir el Senamon seleccionado
+    Senamon senamonSeleccionado = listaSenamon[seleccionSenamon - 1];
+
+    // Alimentar al Senamon
+    senamonSeleccionado.alimentar();
+  }
+
+  // Método para verificar si todos sus Senamones están vivos
+  bool tieneSenamonesVivos() {
+    return listaSenamon.any((senamon) => senamon.estaVivo());
+  }
+  // Método que retorna el primer Senamon vivo de la lista
+  Senamon obtenerSenamonVivo() {
+    for (var senamon in listaSenamon) {
+      if (senamon.estaVivo()) {
+        return senamon;
+      }
+    }
+    throw Exception("No hay Senamones vivos.");
   }
 
   // Getters
