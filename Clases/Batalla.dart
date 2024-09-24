@@ -54,30 +54,17 @@ Sello: Segundo entrenador (${entrenador2.getNombre()})
   }
 
   void atacar(Senamon atacante, Senamon defensor) {
-    print("${atacante.getNombre()} ataca a ${defensor.getNombre()}");
-    defensor.setPuntosDeSalud(
-        defensor.getPuntosSalud() - atacante.getPuntosAtaque());
-    print(
-        "${defensor.getNombre()} ahora tiene ${defensor.getPuntosSalud()} de vida");
-
-    if (!defensor.estaVivo()) {
-      print("${defensor.getNombre()} ha sido derrotado.");
+    if (atacante.estaVivo() && defensor.estaVivo()) {
+      defensor.perderSalud(atacante.getPuntosAtaque());
+      print(
+          "${atacante.getNombre()} ataca a ${defensor.getNombre()}. Salud de ${defensor.getNombre()}: ${defensor.getPuntosSalud()}");
     }
   }
 
-void finalizarBatalla(Entrenador entrenador1, Entrenador entrenador2) {
-  if (!entrenador1.tieneSenamonesVivos()) {
-    print("${entrenador2.getNombre()} es el ganador!");
-    entrenador2.sumarExp(200);
-    entrenador2.cantidadBatallas(); // Agregar victoria al historial
-  } else if (!entrenador2.tieneSenamonesVivos()) {
-    print("${entrenador1.getNombre()} es el ganador!");
-    entrenador1.sumarExp(200);
-    entrenador1.cantidadBatallas(); // Agregar victoria al historial
-  } else {
-    print("La batalla aún no ha terminado.");
+  void finalizarBatalla(Entrenador ganador) {
+    print("${ganador.getNombre()} ha ganado la batalla!");
+    // Aquí puedes dar XP al entrenador, etc.
   }
-}
 
   String getResultado() {
     return _resultado;

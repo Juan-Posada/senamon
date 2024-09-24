@@ -644,7 +644,7 @@ void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
           break; // Salir del bucle
         }
 
-        // Seleccionar el entrenador y alimentar un Senamon
+// Seleccionar el entrenador y alimentar un Senamon
         if (opcionDeEntrenador == 1 || opcionDeEntrenador == 2) {
           Entrenador entrenadorSeleccionado =
               listaEntrenadores[opcionDeEntrenador - 1];
@@ -658,7 +658,15 @@ void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
 
           // Obtener la selección del usuario
           int seleccionSenamon = int.parse(stdin.readLineSync()!);
-          entrenadorSeleccionado.alimentarSenamon(seleccionSenamon);
+
+          // Validar si el Senamon está vivo antes de alimentarlo
+          if (entrenadorSeleccionado.listaSenamon[seleccionSenamon - 1]
+              .estaVivo()) {
+            entrenadorSeleccionado.alimentarSenamon(seleccionSenamon);
+          } else {
+            print(
+                "El Senamon seleccionado no está vivo y no puede ser alimentado.");
+          }
         } else {
           print('Opción incorrecta');
         }

@@ -9,7 +9,7 @@ class Senamon extends Tiposenamon {
   int _puntosSalud;
   int _puntosAtaque;
   String _descripcion;
-
+  final int _puntosSaludMaximos;
   Senamon(
       this._nombre,
       this._fase,
@@ -21,7 +21,8 @@ class Senamon extends Tiposenamon {
       this._energia,
       String _nombreTipo,
       String _descripcionTipo)
-      : super(_nombreTipo, _descripcionTipo);
+      : _puntosSaludMaximos = _puntosSalud,
+        super(_nombreTipo, _descripcionTipo);
 
   // Métodos para aumentar puntos de ataque y salud
   void aumentarAtaque(int puntos) {
@@ -40,18 +41,23 @@ class Senamon extends Tiposenamon {
   }
 
 // Método para alimentar al Senamon
- void alimentar() {
-    // Definimos el máximo directamente aquí
-    const int saludMaxima = 100; // Cambia este valor según tus necesidades
-
-    if (_puntosSalud < saludMaxima) {
-      _puntosSalud += 20; // Aumenta la salud en 20
-      if (_puntosSalud > saludMaxima) {
-        _puntosSalud = saludMaxima; // No exceder el máximo
+  void alimentar() {
+    if (_puntosSalud < _puntosSaludMaximos) {
+      _puntosSalud += 20;
+      if (_puntosSalud > _puntosSaludMaximos) {
+        _puntosSalud = _puntosSaludMaximos;
       }
-      print("$_nombre ha sido alimentado. Salud actual: $_puntosSalud / $saludMaxima");
+      print(
+          "${getNombre()} ha sido alimentado. Salud actual: $_puntosSalud / $_puntosSaludMaximos");
     } else {
-      print("$_nombre ya tiene salud máxima.");
+      print("${getNombre()} ya tiene salud máxima.");
+    }
+  }
+
+  void perderSalud(int puntos) {
+    _puntosSalud -= puntos;
+    if (_puntosSalud < 0) {
+      _puntosSalud = 0;
     }
   }
 
