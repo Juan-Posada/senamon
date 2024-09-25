@@ -23,11 +23,17 @@ class Batalla {
 
   void iniciarBatalla(Entrenador entrenador1, Entrenador entrenador2) {
     print('''
-Cara: Primer entrenador (${entrenador1.getNombre()})
-Sello: Segundo entrenador (${entrenador2.getNombre()})
-''');
+      
+      Cara: Primer entrenador (${entrenador1.getNombre()})
+      Sello: Segundo entrenador (${entrenador2.getNombre()})
+
+    ''');
     Entrenador turno = lanzarMoneda() == 'Cara' ? entrenador1 : entrenador2;
-    print("Inicia ${turno.getNombre()}");
+    print('''
+    
+    Inicia ${turno.getNombre()}
+    
+    ''');
 
     while (entrenador1.obtenerSenamonVivo() != null &&
         entrenador2.obtenerSenamonVivo() != null) {
@@ -38,7 +44,15 @@ Sello: Segundo entrenador (${entrenador2.getNombre()})
 
     Entrenador ganador =
         entrenador1.obtenerSenamonVivo() != null ? entrenador1 : entrenador2;
-    print("¡${ganador.getNombre()} ha ganado la batalla!");
+    print('''
+
+    🎇   🎇   🎇   🎇   🎇   🎇   🎇   🎇   🎇   🎇
+
+    ¡${ganador.getNombre()} ha ganado la batalla!
+
+    🎇   🎇   🎇   🎇   🎇   🎇   🎇   🎇   🎇   🎇
+    
+    ''');
   }
 
   void realizarTurno(
@@ -48,7 +62,7 @@ Sello: Segundo entrenador (${entrenador2.getNombre()})
     Senamon senamonAtacante = atacante.obtenerSenamonVivo();
     Senamon senamonDefensor = defensor.obtenerSenamonVivo();
 
-    if (senamonAtacante != null && senamonDefensor != null) {
+    if (senamonAtacante != null || senamonDefensor != null) {
       atacar(senamonAtacante, senamonDefensor);
     }
   }
@@ -57,12 +71,29 @@ Sello: Segundo entrenador (${entrenador2.getNombre()})
     if (atacante.estaVivo() && defensor.estaVivo()) {
       defensor.perderSalud(atacante.getPuntosAtaque());
       print(
-          "${atacante.getNombre()} ataca a ${defensor.getNombre()}. Salud de ${defensor.getNombre()}: ${defensor.getPuntosSalud()}");
+          '''
+          
+          ${atacante.getNombre()} ataca a ${defensor.getNombre()}. 
+
+          🩸   🩸   🩸   🩸   🩸   🩸   🩸   🩸 🩸   🩸   🩸   🩸   🩸   🩸   🩸   🩸
+          
+          Salud de ${defensor.getNombre()}: ${defensor.getPuntosSalud()}
+
+          
+          ''');
     }
   }
 
   void finalizarBatalla(Entrenador ganador) {
-    print("${ganador.getNombre()} ha ganado la batalla!");
+    print('''
+
+    🥇         🥇         🥇         🥇         🥇
+
+    ${ganador.getNombre()} ha ganado la batalla!
+
+    🥇         🥇         🥇         🥇         🥇
+    
+    ''');
     // Aquí puedes dar XP al entrenador, etc.
   }
 

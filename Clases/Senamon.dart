@@ -27,17 +27,33 @@ class Senamon extends Tiposenamon {
   // Métodos para aumentar puntos de ataque y salud
   void aumentarAtaque(int puntos) {
     _puntosAtaque += puntos;
-    print("$_nombre ha aumentado su ataque a $_puntosAtaque");
+    print(
+    '''
+
+    $_nombre ha aumentado su ataque a $_puntosAtaque
+    
+    ''');
+
   }
 
   void aumentarSalud(int puntos) {
     _puntosSalud += puntos;
-    print("$_nombre ha aumentado su salud a $_puntosSalud");
+    print(
+    '''
+
+    $_nombre ha aumentado su salud a $_puntosSalud
+    
+    ''');
   }
 
   void subirNivel(int incremento) {
     _nivel += incremento;
-    print("$_nombre ha subido su nivel a $_nivel");
+    print(
+    '''
+
+    $_nombre ha subido su nivel a $_nivel
+    
+    ''');
   }
 
 // Método para alimentar al Senamon
@@ -48,9 +64,18 @@ class Senamon extends Tiposenamon {
         _puntosSalud = _puntosSaludMaximos;
       }
       print(
-          "${getNombre()} ha sido alimentado. Salud actual: $_puntosSalud / $_puntosSaludMaximos");
+      '''
+
+          ${getNombre()} ha sido alimentado. Salud actual: $_puntosSalud / $_puntosSaludMaximos
+          
+      ''');
     } else {
-      print("${getNombre()} ya tiene salud máxima.");
+      print(
+      '''
+      
+      ${getNombre()} ya tiene salud máxima.
+      
+      ''');
     }
   }
 
@@ -132,4 +157,5 @@ class Senamon extends Tiposenamon {
   void setDescripcion(String descripcion) {
     this._descripcion = descripcion;
   }
+
 }

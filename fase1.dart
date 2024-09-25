@@ -350,7 +350,7 @@ void fase1() {
       case 2:
         print('''
 
-      Menú Entrenadores
+      Menú Senamones
       ________________________________
      |                                |
      | 1. Crea un Senamon             |
@@ -412,16 +412,38 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
         //---------------- CREACIÓN DE ENTRENADORES ----------------//
         if (listaEntrenadores.length < 2) {
           //---------------- Pedir datos al usuario ----------------//
-          print("""Ingrese los datos del entrenador en el siguiente orden.
+
+
+          print("""
+          
+          Empecemos introduciendo la información del entrenador
+
           1. Nombre del entrenador.
-          2. Email del entrenador.
-          3. Introduce la fecha de necamiento (YYYY-MM-DD)
-          4. Seleccione los 5 senamones para el entrenador
+          
           """);
           nombre = stdin.readLineSync();
+
+          print("""
+    
+          2. Email del entrenador.
+          
+          """);
           email = stdin.readLineSync();
+
+          print("""
+    
+          3. Introduce la fecha de necamiento (YYYY-MM-DD)
+          
+          """);
           fecha = stdin.readLineSync();
+
+          print("""
+
+          4. Seleccione los 5 senamones para el entrenador
+          
+          """);
           fechaNacimiento = DateTime.parse(fecha!);
+
           while (listadoSenamon.length < 5) {
             print("Senamones disponibles:");
             for (int i = 0; i < universoSenamon.length; i++) {
@@ -514,10 +536,14 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
         }
         Entrenador entrenadorPrede2 = Entrenador('martin', 'mar@gmail.com',
             DateTime(25 - 10 - 2010), 0, 0, 0, listadoSenamon);
-        print("""Seleccione un entrenador
+        print("""
+        Seleccione un entrenador.
         Al momento de seleccionarlo, el restante de definirá autimaticamente.
-        1. ${entrenadorPrede1.getNombre()}.
-        2. ${entrenadorPrede2.getNombre()}.""");
+
+          1. ${entrenadorPrede1.getNombre()}.
+          2. ${entrenadorPrede2.getNombre()}.
+
+        """);
         do {
           opcion = int.parse(stdin.readLineSync()!);
         } while (opcion < 1 || opcion > 2);
@@ -540,10 +566,10 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
       case 0:
         print('''
 
-      Estás saliendo del menú entrenador
+        Estás saliendo del menú entrenador
       
-      -
-      Vamos al siguiente paso
+        -
+        Vamos al siguiente paso
       
       ''');
         break;
@@ -574,26 +600,76 @@ void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
     switch (opcionSenamon) {
       case 1:
         //---------------- CREACIÓN DE SENAMON ----------------//
-        print("Ingrese los datos del entrenador en el siguiente orden.");
-        print("1. Nombre del Senamon.");
+        print('''
+
+        Empecemos introduciendo la información del entrenador
+        
+        1. Nombre del Senamon.
+        
+        ''');
         nombre = stdin.readLineSync()!;
-        print("2. Peso del Senamon.");
+
+        print('''
+        
+        2. Peso del Senamon.
+        
+        ''');
         peso = double.parse(stdin.readLineSync()!);
-        print("3. Energia del Senamon.");
+
+        print('''
+        
+        3. Energia del Senamon.
+        
+        ''');
         energia = double.parse(stdin.readLineSync()!);
-        print("4. Puntos de Salud.");
+
+        print('''
+        
+        4. Puntos de Salud.
+        
+        ''');
         puntosSalud = int.parse(stdin.readLineSync()!);
-        print("5. Puntos de Ataque.");
+
+        print('''
+        
+        5. Puntos de Ataque
+        
+        ''');
         puntosAtaque = int.parse(stdin.readLineSync()!);
-        print("6. Nivel del senamon.");
+
+        print('''
+        
+        6. Nivel del senamon.
+        
+        ''');
         nivel = int.parse(stdin.readLineSync()!);
-        print("7. Fase en la que se encuentra el Senamon.");
+
+        print('''
+        
+        7. Fase en la que se encuentra el Senamon.
+        
+        ''');
         fase = int.parse(stdin.readLineSync()!);
-        print("8. Tipo de senamon.");
+
+        print('''
+
+        8. Tipo de senamon.
+        
+        ''');
         nombreTipo = stdin.readLineSync()!;
-        print("9. Descripción del tipo.");
+
+        print('''
+        
+        9. Descripción del tipo
+        
+        ''');
         descripcionTipo = stdin.readLineSync()!;
-        print("10. Descripción General.");
+
+        print('''
+        
+        10. Descripción General.
+        
+        ''');
         descripcion = stdin.readLineSync()!;
 
         // Crear un nuevo senamon usando los setters
@@ -614,10 +690,15 @@ void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
       case 3:
         //---------------- ENTRENAR SENAMON ----------------//
         int opcionDeEntrenador;
-        print("Seleccione el Entrenador que cambíará los senamones primero");
-        print('1. ${listaEntrenadores[0].getNombre()}');
-        print('2. ${listaEntrenadores[1].getNombre()}');
+        print('''
 
+        Seleccione el Entrenador que cambíará los senamones primero:
+
+        1. ${listaEntrenadores[0].getNombre()}
+        2. ${listaEntrenadores[1].getNombre()}
+        3. Salir
+
+        ''');
         opcionDeEntrenador = int.parse(stdin.readLineSync()!);
 
         if (opcionDeEntrenador == 1) {
@@ -633,11 +714,15 @@ void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
         break;
       case 4:
         //---------------- ALIMENTAR SENAMON ----------------//
-        print("Seleccione el Entrenador que alimentará un Senamon:");
-        print('1. ${listaEntrenadores[0].getNombre()}');
-        print('2. ${listaEntrenadores[1].getNombre()}');
-        print('3. Salir');
+        print('''
+        
+        Seleccione el Entrenador que alimentará un Senamon:
 
+        1. ${listaEntrenadores[0].getNombre()}
+        2. ${listaEntrenadores[1].getNombre()}
+        3. Salir
+
+        ''');
         int opcionDeEntrenador = int.parse(stdin.readLineSync()!);
 
         if (opcionDeEntrenador == 3) {
