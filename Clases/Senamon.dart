@@ -27,19 +27,16 @@ class Senamon extends Tiposenamon {
   // Métodos para aumentar puntos de ataque y salud
   void aumentarAtaque(int puntos) {
     _puntosAtaque += puntos;
-    print(
-    '''
+    print('''
 
     $_nombre ha aumentado su ataque a $_puntosAtaque
     
     ''');
-
   }
 
   void aumentarSalud(int puntos) {
     _puntosSalud += puntos;
-    print(
-    '''
+    print('''
 
     $_nombre ha aumentado su salud a $_puntosSalud
     
@@ -48,8 +45,7 @@ class Senamon extends Tiposenamon {
 
   void subirNivel(int incremento) {
     _nivel += incremento;
-    print(
-    '''
+    print('''
 
     $_nombre ha subido su nivel a $_nivel
     
@@ -63,15 +59,13 @@ class Senamon extends Tiposenamon {
       if (_puntosSalud > _puntosSaludMaximos) {
         _puntosSalud = _puntosSaludMaximos;
       }
-      print(
-      '''
+      print('''
 
           ${getNombre()} ha sido alimentado. Salud actual: $_puntosSalud / $_puntosSaludMaximos
           
       ''');
     } else {
-      print(
-      '''
+      print('''
       
       ${getNombre()} ya tiene salud máxima.
       
@@ -86,6 +80,14 @@ class Senamon extends Tiposenamon {
     }
   }
 
+  // Método para perder salud considerando afinidades
+  void perderSaludConAfinidad(int puntos, Tiposenamon tipoAtacante) {
+    double danioAjustado = tipoAtacante.calcularDanio(puntos, this);
+    _puntosSalud -= danioAjustado.toInt();
+    if (_puntosSalud < 0) {
+      _puntosSalud = 0;
+    }
+  }
 
   // Verifica si el Senamon sigue vivo
   bool estaVivo() {
@@ -157,5 +159,4 @@ class Senamon extends Tiposenamon {
   void setDescripcion(String descripcion) {
     this._descripcion = descripcion;
   }
-
 }

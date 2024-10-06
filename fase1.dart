@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'Clases/Batalla.dart';
 import 'Clases/Entrenador.dart';
 import 'Clases/Senamon.dart';
 
@@ -375,6 +376,24 @@ void fase1() {
         }
         menuSenamones(opcionSenamon, universoSenamon, senamones, entrenadores);
         break;
+      case 3:
+        // Asegúrate de que tienes al menos dos entrenadores disponibles
+        if (entrenadores.length >= 2) {
+          Entrenador entrenador1 = entrenadores[0];
+          Entrenador entrenador2 = entrenadores[1];
+
+          // Obtén el primer Senamon de cada entrenador
+          Senamon senamon1 = entrenador1.obtenerSenamonVivo();
+          Senamon senamon2 = entrenador2.obtenerSenamonVivo();
+
+          // Crea la batalla, ahora puedes pasar null
+          Batalla batalla = Batalla(entrenador1, entrenador2, senamon1,
+              senamon2, null, DateTime.now(), '');
+          batalla.iniciarBatalla(entrenador1, entrenador2, false);
+        } else {
+          print('Necesitas al menos 2 entrenadores para iniciar una batalla.');
+        }
+        break;
       //Salir
       case 0:
         print('''
@@ -412,7 +431,6 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
         //---------------- CREACIÓN DE ENTRENADORES ----------------//
         if (listaEntrenadores.length < 2) {
           //---------------- Pedir datos al usuario ----------------//
-
 
           print("""
           
