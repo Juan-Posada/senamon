@@ -9,7 +9,7 @@ class Senamon extends Tiposenamon {
   int _puntosSalud;
   int _puntosAtaque;
   String _descripcion;
-  final int _puntosSaludMaximos;
+  int _puntosSaludMaximos;
   Senamon(
       this._nombre,
       this._fase,

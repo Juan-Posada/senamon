@@ -320,62 +320,472 @@ void fase1() {
     switch (condicionTipoApp) {
       //---------------- Menu de Entrenadores ----------------//
       case 1:
-        print('''
+        List<Senamon> listadoSenamon = [];
+        String? nombre, email, fecha;
+        DateTime fechaNacimiento;
+        int opcion, cantSemanon = 5, opcion1;
+        do {
+          print('''
 
-      Menú de Entrenadores
-      ________________________________
-     |                                |
-     | 1. Crea tu entrenador          |
-     | 2. Selecciona tu entrenador    |
-     | 3. Mostrar Entrenadores        |
-     | 0. Salir                       | 
-     |                                |
-      --------------------------------
+        Menú de Entrenadores
+        ________________________________
+       |                                |
+       | 1. Crea tu entrenador          |
+       | 2. Selecciona tu entrenador    |
+       | 3. Mostrar Entrenadores        |
+       | 0. Salir                       | 
+       |                                |
+       --------------------------------
 
-      ''');
+        ''');
 
-        while (true) {
-          print('Introduce una opción (número entero):');
-          try {
-            opcionEntrenador = int.parse(stdin.readLineSync()!);
-            break; // Salir del bucle si la conversión es exitosa
-          } catch (e) {
-            print('Por favor, introduce un número entero válido.');
+          while (true) {
+            print('Introduce una opción (número entero):');
+            try {
+              opcionEntrenador = int.parse(stdin.readLineSync()!);
+              break; // Salir del bucle si la conversión es exitosa
+            } catch (e) {
+              print('Por favor, introduce un número entero válido.');
+            }
           }
-        }
+          switch (opcionEntrenador) {
+            case 1:
+              //---------------- CREACIÓN DE ENTRENADORES ----------------//
+              print('''
 
-        menuEntrenadores(opcionEntrenador, entrenadores, universoSenamon);
+          En esta ocasión solo podrás crear dos entrenadores 
+          (pasa a la FASE II para desbloquear más entrenador).
+
+        ''');
+
+              bool control = true;
+
+              while (control) {
+                //---------------- Pedir datos al usuario ----------------//
+                listadoSenamon.clear();
+                print("""
+          Empecemos introduciendo la información del entrenador
+
+          1. Nombre del entrenador.
+          
+          """);
+                nombre = stdin.readLineSync();
+
+                print("""
+    
+          2. Email del entrenador.
+          
+          """);
+                email = stdin.readLineSync();
+
+                print("""
+    
+          3. Introduce la fecha de necamiento (YYYY-MM-DD)
+          
+          """);
+                fecha = stdin.readLineSync();
+
+                print("""
+
+          4. Seleccione los 5 senamones para el entrenador
+          
+          """);
+                fechaNacimiento = DateTime.parse(fecha!);
+
+                while (listadoSenamon.length < 5) {
+                  print("Senamones disponibles:  ");
+
+                  for (int i = 0; i < universoSenamon.length; i++) {
+                    print("${i + 1}. ${universoSenamon[i].getNombre()}");
+                  }
+
+                  print(
+                      "Escribe el número del Senamon que quieres seleccionar (o 0 para terminar):");
+                  opcion1 = int.parse(stdin.readLineSync()!);
+
+                  if (opcion1 == 0) {
+                    break; // Salir si el usuario elige 0
+                  }
+
+                  if (opcion1 > 0 && opcion1 <= universoSenamon.length) {
+                    Senamon senamonSeleccionado = universoSenamon[opcion1 - 1];
+                    listadoSenamon.add(senamonSeleccionado);
+                    universoSenamon.removeAt(
+                        opcion1 - 1); // Elimina el Senamon del universo
+                    print(
+                        "${senamonSeleccionado.getNombre()} agregado a la lista de selección.");
+                  } else {
+                    print("Selección inválida, intenta de nuevo.");
+                  }
+                }
+
+                // Crear un nuevo entrenador usando los setters
+                Entrenador entrenador1 = Entrenador(
+                    nombre!, email!, fechaNacimiento, 0, 0, 0, listadoSenamon);
+                entrenadores.add(entrenador1);
+
+                print('Cantidad entrenadores: ${entrenadores.length}');
+
+                print(
+                    "Entrenador ${entrenador1.getNombre()} creado y agregado a la lista.");
+
+                if (entrenadores.length == 2) {
+                  control = false;
+                  print("Ya ewta los dos entrenadores");
+                }
+              }
+              print('salio del while');
+              break;
+            case 2:
+              //---------------- ENTRENADORES PREDETERMINADOS ----------------//
+              while (listadoSenamon.length < 5) {
+                print("Senamones disponibles Para el entrenador 1:");
+                for (int i = 0; i < universoSenamon.length; i++) {
+                  print("${i + 1}. ${universoSenamon[i].getNombre()}");
+                }
+
+                print(
+                    "Escribe el número del Senamon que quieres seleccionar (o 0 para terminar):");
+                opcion1 = int.parse(stdin.readLineSync()!);
+
+                if (opcion1 == 0) {
+                  break; // Salir si el usuario elige 0
+                }
+
+                if (opcion1 > 0 && opcion1 <= universoSenamon.length) {
+                  Senamon senamonSeleccionado = universoSenamon[opcion1 - 1];
+                  listadoSenamon.add(senamonSeleccionado);
+                  universoSenamon
+                      .removeAt(opcion1 - 1); // Elimina el Senamon del universo
+                  print(
+                      "${senamonSeleccionado.getNombre()} agregado a la lista de selección.");
+                } else {
+                  print("Selección inválida, intenta de nuevo.");
+                }
+              }
+              Entrenador entrenadorPrede1 = Entrenador(
+                  'jeferson',
+                  'jefer@gmail.com',
+                  DateTime(13 - 04 - 2000),
+                  0,
+                  0,
+                  0,
+                  listadoSenamon);
+              while (listadoSenamon.length < 5) {
+                print("Senamones disponibles Para el entrenador 2:");
+                for (int i = 0; i < universoSenamon.length; i++) {
+                  print("${i + 1}. ${universoSenamon[i]}");
+                }
+
+                print(
+                    "Escribe el número del Senamon que quieres seleccionar (o 0 para terminar):");
+                opcion1 = int.parse(stdin.readLineSync()!);
+
+                if (opcion1 == 0) {
+                  break; // Salir si el usuario elige 0
+                }
+
+                if (opcion1 > 0 && opcion1 <= universoSenamon.length) {
+                  Senamon senamonSeleccionado = universoSenamon[opcion1 - 1];
+                  listadoSenamon.add(senamonSeleccionado);
+                  universoSenamon
+                      .removeAt(opcion1 - 1); // Elimina el Senamon del universo
+                  print(
+                      "${senamonSeleccionado.getNombre()} agregado a la lista de selección.");
+                } else {
+                  print("Selección inválida, intenta de nuevo.");
+                }
+              }
+              Entrenador entrenadorPrede2 = Entrenador(
+                  'martin',
+                  'mar@gmail.com',
+                  DateTime(25, 10, 2010),
+                  0,
+                  0,
+                  0,
+                  listadoSenamon);
+              print("""
+        Seleccione un entrenador.
+        Al momento de seleccionarlo, el restante de definirá autimaticamente.
+
+          1. ${entrenadorPrede1.getNombre()}.
+          2. ${entrenadorPrede2.getNombre()}.
+
+        """);
+              do {
+                opcion = int.parse(stdin.readLineSync()!);
+              } while (opcion < 1 || opcion > 2);
+
+              if (opcion == 1) {
+                entrenadores.add(entrenadorPrede1);
+                entrenadores.add(entrenadorPrede2);
+              } else {
+                entrenadores.add(entrenadorPrede2);
+                entrenadores.add(entrenadorPrede1);
+              }
+
+              break;
+            case 3:
+              //---------------- MOSTRAR ENTRENADORES ----------------//
+              for (var entrenador in entrenadores) {
+                entrenador.mostrarInfoEntrenador();
+                print(''); // Salto de línea para mejor formato
+              }
+              break;
+            case 0:
+              print('''
+
+        Estás saliendo del menú entrenador
+        -
+        Vamos al siguiente paso
+      
+        ''');
+              break;
+
+            default:
+              print('''
+
+          ❌❌❌❌❌❌ OPCION EN DESARROLLO ❌❌❌❌❌❌
+
+          ''');
+              break;
+          }
+        } while (opcionEntrenador != 0 ||
+            opcionEntrenador == 1 ||
+            opcionEntrenador == 2 ||
+            opcionEntrenador == 3);
         break;
-
-      //Menu de Senamones-----------------
+      //---------------- Menu de Senamones -----------------//
       case 2:
-        print('''
+        //---------------- VBLES DE LA FUNCION ----------------//
 
-      Menú Senamones
-      ________________________________
-     |                                |
-     | 1. Crea un Senamon             |
-     | 2. Cambiar senamones           |
-     | 3. Entrenar senamones          |
-     | 4. Alimentar senamones         |
-     | 5. Mostrar universo Senamon    |
-     | 0. SALIR                       |
-     |                                |
-      --------------------------------
+        List<Entrenador> listadoEntrenadores = List.from(entrenadores);
+        String nombre, descripcion, nombreTipo, descripcionTipo;
+        int fase, nivel, puntosSalud, puntosAtaque;
+        double peso, energia;
+        do {
+          print('''
 
-      ''');
+        Menú Senamones
+        ________________________________
+       |                                |
+       | 1. Crea un Senamon             |
+       | 2. Cambiar senamones           |
+       | 3. Entrenar senamones          |
+       | 4. Alimentar senamones         |
+       | 5. Mostrar universo Senamon    |
+       | 0. SALIR                       |
+       |                                |
+        --------------------------------
 
-        while (true) {
-          print('Introduce una opción (número entero):');
-          try {
-            opcionSenamon = int.parse(stdin.readLineSync()!);
-            break; // Salir del bucle si la conversión es exitosa
-          } catch (e) {
-            print('Por favor, introduce un número entero válido.');
+        ''');
+
+          while (true) {
+            print('Introduce una opción (número entero):');
+            try {
+              opcionSenamon = int.parse(stdin.readLineSync()!);
+              break; // Salir del bucle si la conversión es exitosa
+            } catch (e) {
+              print('Por favor, introduce un número entero válido.');
+            }
           }
-        }
-        menuSenamones(opcionSenamon, universoSenamon, senamones, entrenadores);
+          switch (opcionSenamon) {
+            case 1:
+              //---------------- CREACIÓN DE SENAMON ----------------//
+              print('''
+
+        Empecemos introduciendo la información del entrenador
+        
+        1. Nombre del Senamon.
+        
+        ''');
+              nombre = stdin.readLineSync()!;
+
+              print('''
+        
+        2. Peso del Senamon.
+        
+        ''');
+              peso = double.parse(stdin.readLineSync()!);
+
+              print('''
+        
+        3. Energia del Senamon.
+        
+        ''');
+              energia = double.parse(stdin.readLineSync()!);
+
+              print('''
+        
+        4. Puntos de Salud.
+        
+        ''');
+              puntosSalud = int.parse(stdin.readLineSync()!);
+
+              print('''
+        
+        5. Puntos de Ataque
+        
+        ''');
+              puntosAtaque = int.parse(stdin.readLineSync()!);
+
+              print('''
+        
+        6. Nivel del senamon.
+        
+        ''');
+              nivel = int.parse(stdin.readLineSync()!);
+
+              print('''
+        
+        7. Fase en la que se encuentra el Senamon.
+        
+        ''');
+              fase = int.parse(stdin.readLineSync()!);
+
+              print('''
+
+        8. Tipo de senamon.
+        
+        ''');
+              nombreTipo = stdin.readLineSync()!;
+
+              print('''
+        
+        9. Descripción del tipo
+        
+        ''');
+              descripcionTipo = stdin.readLineSync()!;
+
+              print('''
+        
+        10. Descripción General.
+        
+        ''');
+              descripcion = stdin.readLineSync()!;
+
+              // Crear un nuevo senamon usando los setters
+              Senamon mySenamon = Senamon(
+                  nombre,
+                  fase,
+                  nivel,
+                  peso,
+                  puntosSalud,
+                  puntosAtaque,
+                  descripcion,
+                  energia,
+                  nombreTipo,
+                  descripcionTipo);
+              universoSenamon.add(mySenamon);
+              print(
+                  "Senamon ${mySenamon.getNombre()} creado y agregado a la lista.");
+              break;
+
+            case 2:
+              int numEntrenador;
+              print(
+                  "Seleccione el Entrenador que cambíará los senamones primero");
+              numEntrenador = int.parse(stdin.readLineSync()!);
+              numEntrenador -= 1;
+
+              cambiarSenamones(listadoEntrenadores, numEntrenador);
+
+            case 3:
+              //---------------- ENTRENAR SENAMON ----------------//
+              int opcionDeEntrenador;
+              print('''
+
+        Seleccione el Entrenador que cambíará los senamones primero:
+
+        1. ${entrenadores[0].getNombre()}
+        2. ${entrenadores[1].getNombre()}
+        3. Salir
+
+        ''');
+              opcionDeEntrenador = int.parse(stdin.readLineSync()!);
+
+              if (opcionDeEntrenador == 1) {
+                listadoEntrenadores[0]
+                    .entrenarSenamon(opcionDeEntrenador, listadoEntrenadores);
+              } else if (opcionDeEntrenador == 2) {
+                listadoEntrenadores[1]
+                    .entrenarSenamon(opcionDeEntrenador, listadoEntrenadores);
+              } else {
+                print('Opción incorrecta');
+              }
+
+              break;
+            case 4:
+              //---------------- ALIMENTAR SENAMON ----------------//
+              print('''
+        
+        Seleccione el Entrenador que alimentará un Senamon:
+
+        1. ${entrenadores[0].getNombre()}
+        2. ${entrenadores[1].getNombre()}
+        3. Salir
+
+        ''');
+              int opcionDeEntrenador = int.parse(stdin.readLineSync()!);
+
+              if (opcionDeEntrenador == 3) {
+                break; // Salir del bucle
+              }
+
+              // Seleccionar el entrenador y alimentar un Senamon
+              if (opcionDeEntrenador == 1 || opcionDeEntrenador == 2) {
+                Entrenador entrenadorSeleccionado =
+                    entrenadores[opcionDeEntrenador - 1];
+
+                print(
+                    "Selecciona un Senamon para alimentar de ${entrenadorSeleccionado.getNombre()}:");
+                for (var i = 0;
+                    i < entrenadorSeleccionado.listaSenamon.length;
+                    i++) {
+                  print(
+                      "${i + 1}. ${entrenadorSeleccionado.listaSenamon[i].getNombre()} - Salud actual: ${entrenadorSeleccionado.listaSenamon[i].getPuntosSalud()}");
+                }
+
+                // Obtener la selección del usuario
+                int seleccionSenamon = int.parse(stdin.readLineSync()!);
+
+                // Validar si el Senamon está vivo antes de alimentarlo
+                if (entrenadorSeleccionado.listaSenamon[seleccionSenamon - 1]
+                    .estaVivo()) {
+                  entrenadorSeleccionado.alimentarSenamon(seleccionSenamon);
+                } else {
+                  print(
+                      "El Senamon seleccionado no está vivo y no puede ser alimentado.");
+                }
+              } else {
+                print('Opción incorrecta');
+              }
+            case 5:
+            //---------------- MOSTRAR UNIVERSO SENAMON ----------------//
+            case 0:
+              print('''
+
+        Estás saliendo del menú senamon
+        -
+        -
+        Vamos al siguiente paso
+      
+        ''');
+              break;
+
+            default:
+              print('''
+
+          ❌❌❌❌❌❌ OPCION EN DESARROLLO ❌❌❌❌❌❌
+
+
+          ''');
+              break;
+          }
+        } while (
+            opcionSenamon != 0 || opcionSenamon == 1 || opcionSenamon == 2);
         break;
+      //---------------- Menú batalla ----------------//
       case 3:
         // Asegúrate de que tienes al menos dos entrenadores disponibles
         if (entrenadores.length >= 2) {
@@ -394,18 +804,19 @@ void fase1() {
           print('Necesitas al menos 2 entrenadores para iniciar una batalla.');
         }
         break;
-      //Salir
+      //---------------- Salir ----------------//
       case 0:
         print('''
 
-      Estás saliendo de tu Juego favorito
-      -
-      -
-      Disfruta tu vida de mortal
-      ¡Vuelve pronto!🤍
+        Estás saliendo de tu Juego favorito
+        -
+        -
+        Disfruta tu vida de mortal
+        ¡Vuelve pronto!🤍
       
-      ''');
+        ''');
         break;
+      //---------------- Opción incorrecta ----------------//
       default:
         print('''
 
@@ -416,386 +827,6 @@ void fase1() {
     }
   } while (
       condicionTipoApp != 0 || condicionTipoApp == 1 || condicionTipoApp == 2);
-}
-
-void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
-    List<Senamon> universoSenamon) {
-  List<Senamon> universosSenamon = universoSenamon;
-  List<Senamon> listadoSenamon = [];
-  String? nombre, email, fecha;
-  DateTime fechaNacimiento;
-  int opcion, cantSemanon = 5, opcion1;
-  do {
-    switch (opcionEntrenador) {
-      case 1:
-        //---------------- CREACIÓN DE ENTRENADORES ----------------//
-        if (listaEntrenadores.length < 2) {
-          //---------------- Pedir datos al usuario ----------------//
-
-          print("""
-          
-          Empecemos introduciendo la información del entrenador
-
-          1. Nombre del entrenador.
-          
-          """);
-          nombre = stdin.readLineSync();
-
-          print("""
-    
-          2. Email del entrenador.
-          
-          """);
-          email = stdin.readLineSync();
-
-          print("""
-    
-          3. Introduce la fecha de necamiento (YYYY-MM-DD)
-          
-          """);
-          fecha = stdin.readLineSync();
-
-          print("""
-
-          4. Seleccione los 5 senamones para el entrenador
-          
-          """);
-          fechaNacimiento = DateTime.parse(fecha!);
-
-          while (listadoSenamon.length < 5) {
-            print("Senamones disponibles:");
-            for (int i = 0; i < universoSenamon.length; i++) {
-              print("${i + 1}. ${universoSenamon[i]}");
-            }
-
-            print(
-                "Escribe el número del Senamon que quieres seleccionar (o 0 para terminar):");
-            opcion1 = int.parse(stdin.readLineSync()!);
-
-            if (opcion1 == 0) {
-              break; // Salir si el usuario elige 0
-            }
-
-            if (opcion1 > 0 && opcion1 <= universoSenamon.length) {
-              Senamon senamonSeleccionado = universoSenamon[opcion1 - 1];
-              listadoSenamon.add(senamonSeleccionado);
-              universoSenamon
-                  .removeAt(opcion1 - 1); // Elimina el Senamon del universo
-              print(
-                  "${senamonSeleccionado.getNombre()} agregado a la lista de selección.");
-            } else {
-              print("Selección inválida, intenta de nuevo.");
-            }
-          }
-          // Crear un nuevo entrenador usando los setters
-          Entrenador entrenador1 = Entrenador(
-              nombre!, email!, fechaNacimiento, 0, 0, 0, listadoSenamon);
-          listaEntrenadores.add(entrenador1);
-
-          print(
-              "Entrenador ${entrenador1.getNombre()} creado y agregado a la lista.");
-        } else {
-          print("Ya tienes el máximo de 2 entrenadores.");
-        }
-        break;
-      case 2:
-        //---------------- ENTRENADORES PREDETERMINADOS ----------------//
-        while (listadoSenamon.length < 5) {
-          print("Senamones disponibles Para el entrenador 1:");
-          for (int i = 0; i < universoSenamon.length; i++) {
-            print("${i + 1}. ${universoSenamon[i]}");
-          }
-
-          print(
-              "Escribe el número del Senamon que quieres seleccionar (o 0 para terminar):");
-          opcion1 = int.parse(stdin.readLineSync()!);
-
-          if (opcion1 == 0) {
-            break; // Salir si el usuario elige 0
-          }
-
-          if (opcion1 > 0 && opcion1 <= universoSenamon.length) {
-            Senamon senamonSeleccionado = universoSenamon[opcion1 - 1];
-            listadoSenamon.add(senamonSeleccionado);
-            universoSenamon
-                .removeAt(opcion1 - 1); // Elimina el Senamon del universo
-            print(
-                "${senamonSeleccionado.getNombre()} agregado a la lista de selección.");
-          } else {
-            print("Selección inválida, intenta de nuevo.");
-          }
-        }
-        Entrenador entrenadorPrede1 = Entrenador('jeferson', 'jefer@gmail.com',
-            DateTime(13 - 04 - 2000), 0, 0, 0, listadoSenamon);
-        while (listadoSenamon.length < 5) {
-          print("Senamones disponibles Para el entrenador 2:");
-          for (int i = 0; i < universoSenamon.length; i++) {
-            print("${i + 1}. ${universoSenamon[i]}");
-          }
-
-          print(
-              "Escribe el número del Senamon que quieres seleccionar (o 0 para terminar):");
-          opcion1 = int.parse(stdin.readLineSync()!);
-
-          if (opcion1 == 0) {
-            break; // Salir si el usuario elige 0
-          }
-
-          if (opcion1 > 0 && opcion1 <= universoSenamon.length) {
-            Senamon senamonSeleccionado = universoSenamon[opcion1 - 1];
-            listadoSenamon.add(senamonSeleccionado);
-            universoSenamon
-                .removeAt(opcion1 - 1); // Elimina el Senamon del universo
-            print(
-                "${senamonSeleccionado.getNombre()} agregado a la lista de selección.");
-          } else {
-            print("Selección inválida, intenta de nuevo.");
-          }
-        }
-        Entrenador entrenadorPrede2 = Entrenador('martin', 'mar@gmail.com',
-            DateTime(25 - 10 - 2010), 0, 0, 0, listadoSenamon);
-        print("""
-        Seleccione un entrenador.
-        Al momento de seleccionarlo, el restante de definirá autimaticamente.
-
-          1. ${entrenadorPrede1.getNombre()}.
-          2. ${entrenadorPrede2.getNombre()}.
-
-        """);
-        do {
-          opcion = int.parse(stdin.readLineSync()!);
-        } while (opcion < 1 || opcion > 2);
-
-        if (opcion == 1) {
-          listaEntrenadores.add(entrenadorPrede1);
-          listaEntrenadores.add(entrenadorPrede2);
-        } else {
-          listaEntrenadores.add(entrenadorPrede2);
-          listaEntrenadores.add(entrenadorPrede1);
-        }
-
-        break;
-      case 3:
-        //---------------- MOSTRAR ENTRENADORES ----------------//
-        for (var entrenador in listaEntrenadores) {
-          entrenador.mostrarInfoEntrenador();
-          print(''); // Salto de línea para mejor formato
-        }
-      case 0:
-        print('''
-
-        Estás saliendo del menú entrenador
-      
-        -
-        Vamos al siguiente paso
-      
-      ''');
-        break;
-
-      default:
-        print('''
-
-          ❌❌❌❌❌❌ OPCION EN DESARROLLO ❌❌❌❌❌❌
-
-          ''');
-        break;
-    }
-  } while (opcionEntrenador != 0 ||
-      opcionEntrenador == 1 ||
-      opcionEntrenador == 2 ||
-      opcionEntrenador == 3);
-}
-
-void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
-    List<Senamon> senamones, List<Entrenador> listaEntrenadores) {
-  //---------------- VBLES DE LA FUNCION ----------------//
-
-  List<Entrenador> listadoEntrenadores = List.from(listaEntrenadores);
-  String nombre, descripcion, nombreTipo, descripcionTipo;
-  int fase, nivel, puntosSalud, puntosAtaque;
-  double peso, energia;
-  do {
-    switch (opcionSenamon) {
-      case 1:
-        //---------------- CREACIÓN DE SENAMON ----------------//
-        print('''
-
-        Empecemos introduciendo la información del entrenador
-        
-        1. Nombre del Senamon.
-        
-        ''');
-        nombre = stdin.readLineSync()!;
-
-        print('''
-        
-        2. Peso del Senamon.
-        
-        ''');
-        peso = double.parse(stdin.readLineSync()!);
-
-        print('''
-        
-        3. Energia del Senamon.
-        
-        ''');
-        energia = double.parse(stdin.readLineSync()!);
-
-        print('''
-        
-        4. Puntos de Salud.
-        
-        ''');
-        puntosSalud = int.parse(stdin.readLineSync()!);
-
-        print('''
-        
-        5. Puntos de Ataque
-        
-        ''');
-        puntosAtaque = int.parse(stdin.readLineSync()!);
-
-        print('''
-        
-        6. Nivel del senamon.
-        
-        ''');
-        nivel = int.parse(stdin.readLineSync()!);
-
-        print('''
-        
-        7. Fase en la que se encuentra el Senamon.
-        
-        ''');
-        fase = int.parse(stdin.readLineSync()!);
-
-        print('''
-
-        8. Tipo de senamon.
-        
-        ''');
-        nombreTipo = stdin.readLineSync()!;
-
-        print('''
-        
-        9. Descripción del tipo
-        
-        ''');
-        descripcionTipo = stdin.readLineSync()!;
-
-        print('''
-        
-        10. Descripción General.
-        
-        ''');
-        descripcion = stdin.readLineSync()!;
-
-        // Crear un nuevo senamon usando los setters
-        Senamon mySenamon = Senamon(nombre, fase, nivel, peso, puntosSalud,
-            puntosAtaque, descripcion, energia, nombreTipo, descripcionTipo);
-        universoSenamon.add(mySenamon);
-        print("Senamon ${mySenamon.getNombre()} creado y agregado a la lista.");
-        break;
-
-      case 2:
-        int numEntrenador;
-        print("Seleccione el Entrenador que cambíará los senamones primero");
-        numEntrenador = int.parse(stdin.readLineSync()!);
-        numEntrenador -= 1;
-
-        cambiarSenamones(listadoEntrenadores, numEntrenador);
-
-      case 3:
-        //---------------- ENTRENAR SENAMON ----------------//
-        int opcionDeEntrenador;
-        print('''
-
-        Seleccione el Entrenador que cambíará los senamones primero:
-
-        1. ${listaEntrenadores[0].getNombre()}
-        2. ${listaEntrenadores[1].getNombre()}
-        3. Salir
-
-        ''');
-        opcionDeEntrenador = int.parse(stdin.readLineSync()!);
-
-        if (opcionDeEntrenador == 1) {
-          listadoEntrenadores[0]
-              .entrenarSenamon(opcionDeEntrenador, listadoEntrenadores);
-        } else if (opcionDeEntrenador == 2) {
-          listadoEntrenadores[1]
-              .entrenarSenamon(opcionDeEntrenador, listadoEntrenadores);
-        } else {
-          print('Opción incorrecta');
-        }
-
-        break;
-      case 4:
-        //---------------- ALIMENTAR SENAMON ----------------//
-        print('''
-        
-        Seleccione el Entrenador que alimentará un Senamon:
-
-        1. ${listaEntrenadores[0].getNombre()}
-        2. ${listaEntrenadores[1].getNombre()}
-        3. Salir
-
-        ''');
-        int opcionDeEntrenador = int.parse(stdin.readLineSync()!);
-
-        if (opcionDeEntrenador == 3) {
-          break; // Salir del bucle
-        }
-
-// Seleccionar el entrenador y alimentar un Senamon
-        if (opcionDeEntrenador == 1 || opcionDeEntrenador == 2) {
-          Entrenador entrenadorSeleccionado =
-              listaEntrenadores[opcionDeEntrenador - 1];
-
-          print(
-              "Selecciona un Senamon para alimentar de ${entrenadorSeleccionado.getNombre()}:");
-          for (var i = 0; i < entrenadorSeleccionado.listaSenamon.length; i++) {
-            print(
-                "${i + 1}. ${entrenadorSeleccionado.listaSenamon[i].getNombre()} - Salud actual: ${entrenadorSeleccionado.listaSenamon[i].getPuntosSalud()}");
-          }
-
-          // Obtener la selección del usuario
-          int seleccionSenamon = int.parse(stdin.readLineSync()!);
-
-          // Validar si el Senamon está vivo antes de alimentarlo
-          if (entrenadorSeleccionado.listaSenamon[seleccionSenamon - 1]
-              .estaVivo()) {
-            entrenadorSeleccionado.alimentarSenamon(seleccionSenamon);
-          } else {
-            print(
-                "El Senamon seleccionado no está vivo y no puede ser alimentado.");
-          }
-        } else {
-          print('Opción incorrecta');
-        }
-      case 5:
-      //---------------- MOSTRAR UNIVERSO SENAMON ----------------//
-      case 0:
-        print('''
-
-      Estás saliendo del menú senamon
-      -
-      -
-      Vamos al siguiente paso
-      
-      ''');
-        break;
-
-      default:
-        print('''
-
-          ❌❌❌❌❌❌ OPCION EN DESARROLLO ❌❌❌❌❌❌
-
-
-          ''');
-        break;
-    }
-  } while (opcionSenamon != 0 || opcionSenamon == 1 || opcionSenamon == 2);
 }
 
 int obtenerPosicion(List<dynamic> lista, String texto) {

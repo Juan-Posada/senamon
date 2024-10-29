@@ -603,6 +603,7 @@ void menuEntrenadores(int opcionEntrenador, List<Entrenador> listaEntrenadores,
 
 void menuSenamones(int opcionSenamon, List<Senamon> universoSenamon,
     List<Senamon> senamones, List<Entrenador> listaEntrenadores) {
+      
   //---------------- VBLES DE LA FUNCION ----------------//
 
   List<Entrenador> listadoEntrenadores = List.from(listaEntrenadores);
